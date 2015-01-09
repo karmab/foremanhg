@@ -7,7 +7,7 @@
 About the name ?
 ---------------
 
-Initially named charlie.py because starting from  07/01/2015, #jesuisforemanhg
+Initially named charlie.py because starting from  07/01/2015, #jesuischarlie
 
 Freedom matters
 

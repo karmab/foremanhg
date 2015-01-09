@@ -4,8 +4,8 @@
 	    foremanhg.py repository
 	    ------------------------------
 
-About the name ?
----------------
+About the name 
+--------------
 
 Initially named charlie.py because starting from  07/01/2015, #jesuischarlie
 

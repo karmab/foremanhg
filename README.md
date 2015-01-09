@@ -31,11 +31,11 @@ Requisites
 Contents
 --------
 
-    README.txt                      this file
-    foremanhg.py	            deploying script
-    foremanhg.plan	            deployment plan
-    foremanhg.keys		    parameters file
-    foreman.ini		            sample configuration file to be edited to match your environment and copied to $HOME 
+    README.md		this file
+    foremanhg.py	deploying script
+    foremanhg.plan	deployment plan
+    foremanhg.keys	parameters file
+    foreman.ini		sample configuration file to be edited to match your environment and copied to $HOME 
                                                             
 Typical uses
 ---------

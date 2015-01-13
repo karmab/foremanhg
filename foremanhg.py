@@ -336,15 +336,13 @@ except IOError:
 classesbygroup = {}
 for item in foremanhgplan:
 	if not item.startswith('#') and not item.startswith(';') and not item.startswith('//') and len(item.split('=')) == 2:
-		key, value = item.split('=')
-		value = value.replace('\n','')
-		print "KEY:%s VALUE:%s" % (key, value)
+                key, value = item.split('=')[0].strip(), item.split('=')[1].strip()
 		if key == 'basegroup':
 			basegroup = value
 		elif key == 'groups':
-                	groups = value.split(';')
+			groups = [x.strip() for x in value.split(';')]
                	elif key in groups:
-                        classesbygroup[key] = value.split(';')
+                        classesbygroup[key] = [x.strip() for x in value.split(';')]
 
 f = Foreman(foremanhost,foremanport,foremanuser, foremanpassword,secure=True)
 
@@ -384,15 +382,19 @@ if groups and new:
 			classes = classesbygroup[group]
         	f.createhostgroup(group, classes)
 
+
 if groups and override:
 	providedparams = {}
 	if os.path.isfile(keyfile):
 		foremanhgkeys=open(keyfile).readlines()
 		for item in foremanhgkeys:
 			if not item.startswith('#') and not item.startswith(';') and not item.startswith('//') and '=' in item :
-				key, value = item.split('=')
-				if value == '\n':
+				key = item.split('=')[0].strip()
+				value = ''.join(item.split('=')[1:]).strip().replace('\n','')
+				if value == '':
 					value = os.urandom(randomness).encode('hex')
+				elif value == "BLANK":
+					value = ''
 				providedparams[key] = value.replace('\n','')	
 		for group in groups:
 			if classesbygroup.has_key(group):

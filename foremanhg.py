@@ -359,11 +359,6 @@ if override and classname:
         f.override(classname, p)
     sys.exit(0)
 
-if delete and groups:
-	for group in groups:
-		f.deletehostgroup(group)
-	sys.exit(0)
-
 #INCLUDE BASEGROUP
 if groups and basegroup:
 	newgroups = []
@@ -374,6 +369,11 @@ if groups and basegroup:
 			classesbygroup[newgroup] = classesbygroup[group]
 			del classesbygroup[group]
 	groups = newgroups
+
+if delete and groups:
+	for group in groups:
+		f.deletehostgroup(group)
+	sys.exit(0)
 
 if groups and new:
 	for group in groups:
@@ -390,7 +390,7 @@ if groups and override:
 		for item in foremanhgkeys:
 			if not item.startswith('#') and not item.startswith(';') and not item.startswith('//') and '=' in item :
 				key = item.split('=')[0].strip()
-				value = ''.join(item.split('=')[1:]).strip().replace('\n','')
+				value = '='.join(item.split('=')[1:]).strip().replace('\n','')
 				if value == '':
 					value = os.urandom(randomness).encode('hex')
 				elif value == "BLANK":
